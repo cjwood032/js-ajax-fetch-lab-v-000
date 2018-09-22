@@ -1,13 +1,19 @@
 const token = '14887047046afac93194e36e1fd398f67e3e5326'
 
-fetch('https://api.github.com/user/repos', {
-  method: 'POST',
-  headers: {
-    Authorization: `token ${token}`
+const postData = {
+  body: 'Great stuff'
+};
+ 
+fetch(
+  'https://api.github.com/repos/:your_ghname/:your_repo/commits/:sha/comments',
+  {
+    method: 'POST',
+    body: JSON.stringify(postData),
+    headers: {
+      Authorization: `token ${token}`
+    }
   }
-})
-  .then(res => res.json())
-  .then(json => console.log(json));
+).then(res => console.log(res));
 
 function getToken() {
   //change to your token to run in browser, but set
